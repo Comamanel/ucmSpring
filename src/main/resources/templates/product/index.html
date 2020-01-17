@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    INDEX PRODUCTS
+
+    <a href="/product/new"><button>NEW</button></a>
+
+    <table>
+        <th:block th:each="product : ${products}">
+            <tr>
+                <td><a th:href="@{/product/details/{id}(id=${product.id})}" th:text="${product.name}">LIEN 1</a></td>
+                <td th:text="${product.price}">...</td>
+                <td><a th:href="@{/product/update/{id}(id=${product.id})}"><button>UPDATE</button></a></td>
+                <td><a th:href="@{/product/delete/{id}(id=${product.id})}"><button>DELETE</button></a></td>
+            </tr>
+        </th:block>
+    </table>
+    <!--
+    <p>AUTRE METHODE</p>
+    <table>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.name}">...</td>
+            <td th:text="${product.price}">...</td>
+        </tr>
+    </table>
+    -->
+</body>
+</html>

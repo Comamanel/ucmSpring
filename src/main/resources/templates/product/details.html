@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a href="/product"><button>BACK TO LIST</button></a>
+    <ul>
+        <li th:text="${'name : ' + product.name}"></li>
+        <li th:text="${'price : ' + product.price}"></li>
+        <li th:text="${'description : ' + product.getDescription()}"></li>
+    </ul>
+    <img th:src="@{${product.image}}"/>
+</body>
+</html>
