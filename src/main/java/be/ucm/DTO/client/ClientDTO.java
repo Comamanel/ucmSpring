@@ -3,13 +3,18 @@ package be.ucm.DTO.client;
 import be.ucm.DAL.entities.Client;
 import be.ucm.DAL.entities.Order;
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ClientDTO {
     private Integer id;
+    @NotNull
+    @Size(min = 6, max = 50)
     private String name;
+    @NotNull
+    @Size(min = 6, max = 50)
     private String firstName;
     private String address;
     private List<ClientOrderDTO> orders;

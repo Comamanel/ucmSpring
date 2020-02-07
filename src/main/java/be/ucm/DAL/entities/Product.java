@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.Constraint;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +17,7 @@ public class Product {
     private Integer id;
     @NotNull
     @Column(unique=true)
+    @Size(min=3, max = 50)
     private String name;
     @Min(0)
     private double price;
