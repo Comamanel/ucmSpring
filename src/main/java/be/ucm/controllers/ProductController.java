@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -17,7 +19,7 @@ public class ProductController {
     ProductDAO productDAO = ProductDAO.getInstance();
 
     @GetMapping("")
-    public String index(Model model){
+    public String index(Model model, HttpServletRequest hsr){
         List<Product> products = productDAO.read();
         model.addAttribute("products", products);
         return "product/index";

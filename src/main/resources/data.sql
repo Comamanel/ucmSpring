@@ -1,1 +1,0 @@
-INSERT INTO client (city, number, street, zip_code, first_name, login, name, password) values ('Ciney', '4b', 'my burger street', '5100', 'Guillaume', 'toto', 'Oger', '1234')

@@ -1,11 +1,15 @@
 package be.ucm.DAL.entities;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Client {
+public class Client implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,6 +22,11 @@ public class Client {
     private Set<Order> orders = new HashSet<>();
     @Embedded
     private Address address;
+    @Column(nullable = true)
+    private boolean banned;
+
+    @ManyToMany
+    private Set<Role> roles = new HashSet<>();
 
     public Client(){}
 
@@ -27,6 +36,7 @@ public class Client {
         this.login = login;
         this.password = password;
         this.address = address;
+        this.banned = false;
     }
 
     public Integer getId() {
@@ -61,8 +71,38 @@ public class Client {
         this.login = login;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return getLogin();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !banned;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setPassword(String password) {
@@ -83,5 +123,21 @@ public class Client {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public boolean isBanned() {
+        return banned;
+    }
+
+    public void setBanned(boolean banned) {
+        this.banned = banned;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
