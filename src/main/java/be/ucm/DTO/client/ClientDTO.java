@@ -2,6 +2,7 @@ package be.ucm.DTO.client;
 
 import be.ucm.DAL.entities.Client;
 import be.ucm.DAL.entities.Order;
+import jdk.nashorn.internal.objects.annotations.Getter;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;

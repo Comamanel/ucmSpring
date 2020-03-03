@@ -37,6 +37,7 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity signin(@RequestBody AuthenticationRequest data) {
         try {
+            
             String login = data.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login, data.getPassword()));
             String token = jwtTokenProvider.createToken(login, this.clientDAO.findByLogin(login).orElseThrow(() -> new UsernameNotFoundException("Username " + login + "not found")).getRoles().stream().map(r -> r.getAuthority()).collect(Collectors.toList()));

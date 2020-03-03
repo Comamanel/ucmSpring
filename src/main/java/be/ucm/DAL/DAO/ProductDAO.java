@@ -19,4 +19,5 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
     @Query("SELECT p FROM Product p WHERE p.category = :category AND p.orders.size > 0")
     List<Product> searchByCategoryOrderedAtLeastOnce(@Param("category") String category);
     List<Product> findByCategory(String category);
+
 }

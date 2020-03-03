@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.ParameterizedType;
 import java.security.Principal;
 import java.util.List;
 
@@ -22,7 +23,13 @@ public class ProductController {
     public String index(Model model, HttpServletRequest hsr){
         List<Product> products = productDAO.read();
         model.addAttribute("products", products);
+
         return "product/index";
+    }
+    private <T> void aaa(T a) throws IllegalAccessException, InstantiationException {
+        Object aaa = ((Class)((ParameterizedType)this.getClass()
+                .getGenericSuperclass())
+                .getActualTypeArguments()[0]).newInstance();
     }
 
     @GetMapping("/new")

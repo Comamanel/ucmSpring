@@ -7,12 +7,13 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-
 @Entity
+@Table
 public class Client implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column
     private String name;
     private String firstName;
     @Column(unique = true)
@@ -25,7 +26,8 @@ public class Client implements UserDetails {
     @Column(nullable = true)
     private boolean banned;
 
-    @ManyToMany
+
+    @ManyToMany()
     private Set<Role> roles = new HashSet<>();
 
     public Client(){}

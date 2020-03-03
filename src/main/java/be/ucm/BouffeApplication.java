@@ -31,6 +31,7 @@ public class BouffeApplication {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private OrderDAO orderDAO;
+
     @EventListener(ApplicationReadyEvent.class)
     public void adds(){
         addRoles();
